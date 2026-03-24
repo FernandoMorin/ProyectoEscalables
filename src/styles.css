@@ -1,1 +1,23 @@
-/* You can add global styles to this file, and also import other style files */
+:root{
+  --brand:#7b2d33;
+  --text-dark:#2b2b2b;
+  --text-light:#ffffff;
+  --nav-bg:rgba(255,255,255,.92);
+  --nav-border:rgba(0,0,0,.06);
+  --outline:rgba(255,255,255,.85);
+  --header-h: 8vh;
+  --gutter-x: 2.5vw;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family:"Helvetica Neue", Arial, sans-serif;
+  color:var(--text-dark);
+  background:#f5f5f5;
+  overflow-x:hidden;
+}
+
+html {
+  scroll-behavior: smooth;
+}
