@@ -1,0 +1,118 @@
+.services{
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+  padding: clamp(2rem, 6vh, 8vh) var(--gutter-x);
+  color: #fff;
+  background:
+    linear-gradient(180deg, rgba(0,0,0,.30) 0%, rgba(0,0,0,.25) 40%, rgba(0,0,0,.30) 100%),
+    url("/bgservicios.png") center/cover no-repeat;
+}
+
+.services-inner{
+  display: grid;
+  grid-template-columns: 50vw 1fr;
+  gap: 3vmin;
+  align-items: start;
+}
+
+.services-left{
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding-top: clamp(2rem, 8vh, 10vh);
+}
+
+.services-heading{
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.2rem, 6vw, 6rem);
+  font-weight: 700;
+  letter-spacing: .02em;
+  line-height: .95;
+  opacity: .9;
+}
+
+.services-heading .light{
+  font-weight: 400;
+  opacity: .6;
+  font-style: italic;
+}
+
+.services-right{
+  display: grid;
+  gap: 2.6vmin;
+  padding-block: clamp(1rem, 3vh, 4vh);
+}
+
+.service-card{
+  background: rgba(0,0,0,.18);
+  backdrop-filter: blur(.3vmin);
+  padding: clamp(1rem, 2.6vh, 3.4vh) clamp(1rem, 2.2vw, 3vw);
+  border-radius: 1.2vmin;
+}
+
+.service-head{
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  align-items: center;
+  column-gap: 1.2vmin;
+  margin-bottom: 1.2vmin;
+}
+
+.ico-diagonal{
+  height: clamp(1.2rem, 2.4vmin, 2rem);
+  width: auto;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+.service-head h3{
+  font-size: clamp(1.2rem, 2.2vw, 2rem);
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.service-desc{
+  text-align: justify;
+  font-size: clamp(.95rem, 1.2vw, 1.1rem);
+  line-height: 1.55;
+  opacity: .95;
+  margin: .6vmin 0 1.6vmin 0;
+}
+
+.service-cta{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1vmin;
+  padding-top: .6vmin;
+  border-top: max(.2vmin, .1rem) solid rgba(255,255,255,.55);
+}
+
+.service-cta span{
+  font-size: clamp(1.05rem, 1.6vw, 1.4rem);
+  font-weight: 600;
+}
+
+.ico-straight{
+  height: clamp(1rem, 2vmin, 1.6rem);
+  width: auto;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+.service-card:hover{
+  background: rgba(0,0,0,.24);
+  transform: translateY(-.2vmin);
+  transition: transform .15s ease, background .2s ease;
+}
+
+@media (max-width: 1100px){
+  .services-inner{
+    grid-template-columns: 1fr;
+  }
+
+  .services-left{
+    padding-top: clamp(1rem, 5vh, 8vh);
+  }
+}
