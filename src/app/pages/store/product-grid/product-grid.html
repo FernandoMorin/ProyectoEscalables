@@ -1,0 +1,9 @@
+<div class="mini-grid">
+  @for (product of products; track product.name) {
+    <app-product-card [product]="product"></app-product-card>
+  }
+
+  <a class="arrow-tile" href="#" aria-label="Ver más productos">
+    <span class="arrow-giant">➜</span>
+  </a>
+</div>

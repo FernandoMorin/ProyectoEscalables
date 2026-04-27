@@ -1,0 +1,20 @@
+<article class="feature-card">
+  <div class="feature-ribbon">PRODUCTO DESTACADO</div>
+
+  <img [src]="product.image" [alt]="product.name" />
+
+  <div class="feature-info">
+    <h2 class="feature-title">
+      {{ product.name }} <span class="u-strong">{{ product.detail }}</span>
+      <span class="feature-price">
+        <span class="qty">{{ product.quantity }}</span>
+        <span class="old">{{ product.oldPrice }}$</span>
+        <span class="now">{{ product.price }}$</span>
+      </span>
+    </h2>
+
+    <p class="feature-desc">
+      {{ product.description }}
+    </p>
+  </div>
+</article>

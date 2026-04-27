@@ -1,0 +1,754 @@
+:root{
+  --brand:#7b2d33;            /* borgoña */
+  --text-dark:#2b2b2b;
+  --text-light:#ffffff;
+  --nav-bg:rgba(255,255,255,.92);
+  --nav-border:rgba(0,0,0,.06);
+  --outline:rgba(255,255,255,.85);
+
+  /* Escalas base (puedes afinar estas dos) */
+  --header-h: 8vh;            /* altura del header (antes ~72px) */
+  --gutter-x: 2.5vw;          /* respiración lateral de secciones */
+}
+
+/* ========== RESET ========== */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family:"Helvetica Neue", Arial, sans-serif;
+  color:var(--text-dark);
+  background:#f5f5f5;
+  overflow-x:hidden;
+}
+
+/* ========== HEADER (3 DIVS a ancho completo) ========== */
+.navbar{
+  position:fixed;
+  top:0; left:0;
+  width:100vw; height:var(--header-h);
+  display:flex; align-items:center; justify-content:space-between;
+  background:var(--nav-bg);
+  border-bottom: max(0.1vmin, .08rem) solid var(--nav-border);
+  backdrop-filter:saturate(120%) blur(.6vmin);
+  z-index:50;
+}
+
+.header-left,.header-center,.header-right{
+  display:flex; align-items:center; height:100%;
+}
+.header-left{ flex:1; justify-content:flex-start; padding-left:var(--gutter-x); }
+.header-center{ flex:2; justify-content:center; }
+.header-right{ flex:1; justify-content:flex-end; }
+
+/* Marca */
+.brand{display:flex; align-items:baseline; gap: .6vw; text-decoration:none}
+.brand-main{
+  font-weight:800; color:var(--brand); letter-spacing:.02em;
+  font-size: clamp(1rem, 1.6vw, 2.2rem);
+}
+.brand-sub{
+  font-weight:600; color:#808080;
+  font-size: clamp(.95rem, 1.5vw, 2rem);
+}
+
+/* Menú centrado */
+.menu{display:flex; align-items:center; gap: 2vw}
+.menu a{
+  text-decoration:none; font-weight:600; color:#333;
+  font-size: clamp(.85rem, 1.1vw, 1.1rem);
+  padding: .9vmin 0; position:relative;
+}
+.menu a.active::after, .menu a:hover::after{
+  content:""; position:absolute; left:0; right:0;
+  bottom:-.7vmin; height:max(.2vmin,.1rem);
+  background:#000; opacity:.2;
+}
+
+/* Botón de login: ocupa toda su columna y altura */
+.header-right .btn-login{
+  display:flex; align-items:center; justify-content:center;
+  width:100%; height:100%;
+  background:var(--brand); color:#fff; text-decoration:none;
+  font-weight:800; letter-spacing:.04em;
+  font-size: clamp(.85rem, 1.1vw, 1.05rem);
+  border-radius:0; border:none; box-shadow:none;
+  transition:background .2s ease;
+}
+.header-right .btn-login:hover{ background:color-mix(in srgb, var(--brand) 85%, black) }
+
+/* ========== HERO (PLAN B) ========== */
+.hero{
+  position:relative; isolation:isolate;
+  min-height:100vh;
+  color:var(--text-light);
+  margin-top: -0.2vmin;          /* evita línea por subpíxel */
+  padding-top: var(--header-h);  /* compensa header fijo */
+  display:flex; align-items:flex-start;
+}
+.hero-video{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  object-fit:cover; object-position:center;
+  z-index:-2;
+}
+.hero-overlay{
+  position:absolute; inset:0;
+  background:linear-gradient(180deg,rgba(0,0,0,.35) 0%, rgba(0,0,0,.25) 40%, rgba(0,0,0,.35) 100%);
+  z-index:-1;
+}
+
+/* Layout: título arriba, fila flecha+botón abajo */
+.hero-layout{
+  width:100%;
+  display:grid;
+  grid-template-columns: minmax(30vmin, 62vmin) 1fr; /* ancho del bloque de título */
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    "title ."
+    "cta   cta";
+  row-gap: 1.4vmin;
+  padding: clamp(2rem, 4vh, 6vh) var(--gutter-x) 0;
+  align-items:start;
+}
+.title-block{ grid-area:title; }
+.cta-row{
+  grid-area:cta; display:flex; align-items:center;
+  gap: 1vmin;                    /* espacio entre flecha y botón */
+}
+
+/* Título */
+.hero-title{
+  margin:0;
+  display:flex; flex-direction:column;
+  font-family:Georgia, "Times New Roman", serif; color:#fff;
+  line-height:.92;
+}
+.hero-title .line-1{
+  font-weight:700;
+  font-size: clamp(3rem, 7vw, 6.8rem);
+}
+.hero-title .line-2{
+  font-weight:700;
+  font-size: clamp(3rem, 7vw, 6.8rem);
+}
+.hero-title .line-2 em{ font-style:italic; font-weight:800 }
+
+/* Flecha como imagen (relativa al viewport) */
+/* Flecha como imagen (tamaño al doble del actual y relativo) */
+.arrow-img {
+  display: block;
+  height: clamp(6rem, 9.8vmin, 10.5rem); /* ← antes era 2rem–3.2vmin–3.5rem, ahora el doble */
+  width: auto;
+  margin-right: 1.2vmin;
+  object-fit: contain;
+  filter: brightness(0) invert(1); /* mantiene la flecha blanca sobre el fondo */
+}
+
+/* Botón CTA */
+.cta-outline{
+  display:inline-flex; align-items:center; justify-content:center;
+  padding: 1.2vmin 3vmin;
+  border: max(.2vmin, .12rem) solid var(--outline);
+  border-radius: 4vmin;
+  text-decoration:none; color:#fff; font-weight:700;
+  font-size: clamp(.95rem, 1.2vw, 1.2rem);
+  background: rgba(255,255,255,.08);
+  backdrop-filter: blur(.3vmin);
+  transition: transform .12s ease, background .2s ease, border-color .2s ease;
+  white-space: nowrap;
+}
+.cta-outline:hover{
+  background: rgba(255,255,255,.14);
+  border-color:#fff;
+  transform: translateY(-.3vmin);
+}
+
+/* Líneas finas y sombras en unidades relativas */
+hr{ height:max(.2vmin,.1rem) }
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 1024px){
+  .menu{ display:none; }
+  .header-left{ padding-left: calc(var(--gutter-x) * .6); }
+
+  .hero-layout{
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "title"
+      "cta";
+    padding: clamp(1.5rem, 3.2vh, 5vh) calc(var(--gutter-x) * .6) 0;
+  }
+  .cta-row{ gap: 1.2vmin; }
+  .arrow-img{ height: clamp(1.6rem, 3.5vmin, 3rem); }
+}
+
+@media (max-width: 560px){
+  .cta-outline{ padding: 1vmin 2.6vmin; border-radius: 5vmin; }
+}
+
+
+/* ================= ABOUT (versión refinada y alineada a la derecha) ================= */
+.about {
+  background: #d8cfc8; /* color uniforme */
+  padding: clamp(2rem, 7vh, 10vh) var(--gutter-x) clamp(2rem, 6vh, 8vh);
+  display: grid;
+  gap: 3vmin;
+}
+
+/* Fila superior: dos columnas */
+.about-top {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr; /* izquierda más ancha */
+  align-items: start;
+  gap: 3vmin;
+}
+
+/* Título principal */
+.about-titlecard {
+  background: transparent;
+  padding: clamp(1rem, 4vh, 6vh) clamp(1rem, 3vw, 4vw);
+}
+
+.about-title {
+  padding: clamp(.8rem, 2.8vh, 3.6vh) clamp(1rem, 2.4vw, 3vw);
+}
+
+.about-line1 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-weight: 600;
+  color: #fff;
+  font-size: clamp(2rem, 6.2vw, 5.2rem);
+  line-height: .95;
+  margin: 0;
+}
+
+/* Eliminado el divisor */
+.about-divider {
+  display: none;
+}
+
+.about-line2 {
+  margin: 0;
+  font-size: clamp(1.6rem, 4.5vw, 3.8rem); /* ↓ reducido el tamaño */
+  line-height: .95;
+  color: #fff;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-weight: 600;
+  letter-spacing: .02em;
+}
+
+.about-line2 .about-novena {
+  font-weight: 800;
+}
+
+.about-line2 .about-studio {
+  font-weight: 400;
+  opacity: .9;
+}
+
+/* Imagen derecha */
+.about-media {
+  margin: 0;
+  padding: 0;
+  display: block;
+  background: transparent;
+}
+
+.about-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border: none;
+}
+
+/* Texto inferior alineado a la derecha */
+.about-bottom {
+  background: #d8cfc8; /* igual que el fondo general */
+  color: #fff;
+  padding: clamp(1.2rem, 4.5vh, 6vh) clamp(1rem, 4vw, 6vw);
+  text-align: right; /* texto alineado a la derecha */
+  justify-self: end; /* bloque alineado a la derecha dentro del grid */
+  max-width: 90%; /* evita que se extienda todo el ancho */
+}
+
+.about-paragraph {
+  margin: 0;
+  font-size: clamp(1rem, 1.35vw, 1.4rem);
+  line-height: 1.6;
+}
+
+.about-tagline {
+  margin-top: clamp(.6rem, 1.6vh, 1.4rem);
+  font-size: clamp(1rem, 1.4vw, 1.5rem);
+  opacity: .9;
+  font-style: italic;
+}
+
+/* --------- Responsive --------- */
+@media (max-width: 1024px) {
+  .about-top {
+    grid-template-columns: 1fr;
+  }
+
+  .about-media img {
+    aspect-ratio: 16 / 9;
+  }
+
+  .about-bottom {
+    justify-self: center; /* centrado en móviles */
+    text-align: center;
+    max-width: 100%;
+  }
+}
+html {
+  scroll-behavior: smooth;
+}
+
+
+
+
+
+
+
+
+/* ================= SERVICIOS ================= */
+.services{
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+  padding: clamp(2rem, 6vh, 8vh) var(--gutter-x);
+  color: #fff;
+  /* Fondo de la sección */
+  background:
+    linear-gradient(180deg, rgba(0,0,0,.30) 0%, rgba(0,0,0,.25) 40%, rgba(0,0,0,.30) 100%),
+    url("Recursos/bgservicios.png") center/cover no-repeat;
+}
+
+/* Contenedor 2 columnas: izquierda 50vw, derecha ocupa el resto */
+.services-inner{
+  display: grid;
+  grid-template-columns: 50vw 1fr;   /* ← mitad exacta para el panel izquierdo */
+  gap: 3vmin;
+  align-items: start;
+}
+
+/* Columna izquierda */
+.services-left{
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding-top: clamp(2rem, 8vh, 10vh);
+}
+.services-heading{
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.2rem, 6vw, 6rem);
+  font-weight: 700;
+  letter-spacing: .02em;
+  line-height: .95;
+  opacity: .9;
+}
+.services-heading .light{
+  font-weight: 400;
+  opacity: .6;
+  font-style: italic;
+}
+
+/* Columna derecha: lista de tarjetas */
+.services-right{
+  display: grid;
+  gap: 2.6vmin;
+  padding-block: clamp(1rem, 3vh, 4vh);
+}
+
+/* Tarjeta */
+.service-card{
+  background: rgba(0,0,0,.18);
+  backdrop-filter: blur(.3vmin);
+  padding: clamp(1rem, 2.6vh, 3.4vh) clamp(1rem, 2.2vw, 3vw);
+  border-radius: 1.2vmin;
+}
+
+/* Encabezado del item (flecha diagonal + título) */
+.service-head{
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  align-items: center;
+  column-gap: 1.2vmin;
+  margin-bottom: 1.2vmin;
+}
+.ico-diagonal{
+  height: clamp(1.2rem, 2.4vmin, 2rem);
+  width: auto;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+.service-head h3{
+  font-size: clamp(1.2rem, 2.2vw, 2rem);
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+/* Descripción (justificada) */
+.service-desc{
+  text-align: justify;                 /* ← requisito */
+  font-size: clamp(.95rem, 1.2vw, 1.1rem);
+  line-height: 1.55;
+  opacity: .95;
+  margin: .6vmin 0 1.6vmin 0;
+}
+
+/* Fila CTA: "Conoce más" + flecha recta */
+.service-cta{
+  display:flex; align-items:center; justify-content:space-between;
+  gap: 1vmin;
+  padding-top: .6vmin;
+  border-top: max(.2vmin, .1rem) solid rgba(255,255,255,.55);
+}
+.service-cta span{
+  font-size: clamp(1.05rem, 1.6vw, 1.4rem);
+  font-weight: 600;
+}
+.ico-straight{
+  height: clamp(1rem, 2vmin, 1.6rem);
+  width: auto;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+/* Hover sutil */
+.service-card:hover{
+  background: rgba(0,0,0,.24);
+  transform: translateY(-.2vmin);
+  transition: transform .15s ease, background .2s ease;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1100px){
+  .services-inner{
+    grid-template-columns: 1fr;  /* apilar */
+  }
+  .services-left{
+    padding-top: clamp(1rem, 5vh, 8vh);
+  }
+}
+
+
+/* ===== Animación de despliegue del login ===== */
+:root{
+  --login-dur: .55s;
+  --login-ease: cubic-bezier(.22,.8,.2,1);
+}
+
+/* Contenedor invisible que controla el flujo y captura clics cuando está abierto */
+.login-overlay{
+  position: fixed;
+  inset: 0;
+  pointer-events: none;            /* se activa cuando está abierto */
+  z-index: 70;                     /* por encima del header */
+}
+
+/* Pseudo que hace de “mancha borgoña” que crece desde el botón */
+.login-overlay::before{
+  content:"";
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 0;                        /* arranca sin ancho */
+  height: var(--header-h);         /* misma altura del header */
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--brand) 92%, #000 0%) 0%,
+                           color-mix(in srgb, var(--brand) 85%, #000 7%) 100%);
+  transition:
+    width var(--login-dur) var(--login-ease),
+    height var(--login-dur) var(--login-ease);
+  transform-origin: right top;
+  border-radius: 0;
+}
+
+/* Contenido del panel */
+.login-sheet{
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: clamp(24rem, 36vw, 34rem);
+  background: rgba(255,255,255,.12);
+  backdrop-filter: blur(.7vmin);
+  color: #fff;
+  padding: clamp(1.2rem, 3vh, 2.4rem) clamp(1.2rem, 2.4vw, 2rem);
+  box-shadow: 0 0 2.4vmin rgba(0,0,0,.25) inset;
+  opacity: 0;
+  transform: translateX(6vw);
+  transition:
+    opacity .45s var(--login-ease) .15s,
+    transform .45s var(--login-ease) .15s;
+  display: grid;
+  align-content: start;
+  gap: 1.2vmin;
+}
+
+/* Botón cerrar */
+.login-close{
+  justify-self: end;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  font-size: clamp(1.2rem, 1.8vw, 1.6rem);
+  line-height: 1;
+  cursor: pointer;
+  opacity: .85;
+}
+
+/* Tipografía del título */
+#login-title{
+  margin: 0 0 .6rem 0;
+  font-size: clamp(1.2rem, 2vw, 1.8rem);
+  font-weight: 800;
+  letter-spacing: .03em;
+}
+
+/* Formulario */
+.login-form{
+  display: grid;
+  gap: 1.4vmin;
+}
+
+.login-form label{
+  display: grid;
+  gap: .5vmin;
+}
+
+.login-form label span{
+  font-size: clamp(.85rem, 1.1vw, 1rem);
+  opacity: .9;
+}
+
+.login-form input[type="email"],
+.login-form input[type="password"]{
+  width: 100%;
+  padding: .9vmin 1.3vmin;
+  border-radius: 1vmin;
+  border: max(.2vmin,.1rem) solid rgba(255,255,255,.35);
+  background: rgba(255,255,255,.08);
+  color: #fff;
+  outline: none;
+}
+
+.login-actions{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2vmin;
+  margin-top: .2rem;
+}
+
+.remember{
+  display:flex; align-items:center; gap:.6vmin;
+  font-size: clamp(.85rem, 1.1vw, 1rem);
+  opacity:.9;
+}
+
+.btn-submit{
+  border:0; border-radius: .9vmin;
+  padding: 1vmin 2.4vmin;
+  background:#fff; color: var(--brand);
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.login-links{
+  display:flex; gap: 2vmin; margin-top: 1vmin;
+}
+.login-links a{
+  color:#fff; text-decoration:none; opacity:.9;
+}
+
+/* ===== Estado abierto ===== */
+body.login-open .login-overlay{ pointer-events:auto; }
+body.login-open .login-overlay::before{
+  width: 100vw;
+  height: 100vh;                   /* el bloque borgoña ocupa la pantalla */
+}
+body.login-open .login-sheet{
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Preferencia de reducir movimiento */
+@media (prefers-reduced-motion: reduce){
+  .login-overlay::before,
+  .login-sheet{
+    transition: none;
+  }
+}
+
+
+
+
+
+/* ================= TIENDA / STORE ================= */
+.store {
+  min-height: 100vh;
+  padding-top: var(--header-h);
+  background:
+    linear-gradient(180deg, rgba(0,0,0,.08) 0%, rgba(0,0,0,.08) 100%),
+    url("Recursos/bg2.png") center/cover no-repeat; /* nuevo fondo */
+  color: #222;
+}
+
+.store-inner {
+  width: 100%;
+  padding: clamp(1.2rem, 4vh, 5vh) var(--gutter-x);
+}
+
+/* Cinta superior */
+.store-banner {
+  display: inline-block;
+  background: color-mix(in srgb, var(--brand) 78%, black 8%);
+  color: rgba(255,255,255,.9);
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-weight: 700;
+  letter-spacing: .03em;
+  font-size: clamp(1.1rem, 2.2vw, 2rem);
+  padding: .6vmin 1.6vmin;
+  margin-bottom: 2vmin;
+}
+
+/* Grilla principal: productos destacados */
+.store-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 2vmin;
+  align-items: start;
+  transform: scale(0.95); /* reduce levemente todo el bloque */
+  transform-origin: top center;
+}
+
+/* ========== Producto destacado (izquierda) ========== */
+/* Grilla 5x2: el destacado ocupa 2x2 y la mini-grid 3x2 */
+.store-grid{
+  display:grid;
+  grid-template-columns: repeat(5, 1fr); /* 5 columnas iguales */
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 2vmin;
+  align-items: stretch;
+}
+
+/* Destacado: se ubica en col 1-2 y row 1-2 (2x2) */
+.feature-card{
+  grid-column: 1 / span 2;
+  grid-row: 1 / span 2;
+  position: relative;
+  background: rgba(255,255,255,.85);
+  border-radius: .8vmin;
+  overflow: hidden;
+}
+
+.feature-card img{
+  width: 100%; height: 100%;
+  object-fit: cover; display:block;
+}
+
+/* Cinta superior sobre el producto */
+.feature-ribbon{
+  position:absolute;
+  top: 1.2vmin; left: 1.6vmin;
+  padding: .7vmin 2vmin;
+  background: color-mix(in srgb, var(--brand) 78%, black 8%);
+  color: rgba(255,255,255,.9);
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-weight: 700;
+  letter-spacing: .03em;
+  font-size: clamp(1rem, 2vw, 1.6rem);
+  border-radius: .6vmin;
+}
+
+/* Overlay informativo del destacado */
+.feature-info{
+  position:absolute; left:0; right:0; bottom:0;
+  padding: 1.2vmin 1.8vmin;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.55) 65%, rgba(0,0,0,.65) 100%);
+  color: #fff;
+}
+
+.feature-title{
+  margin: 0 0 .6vmin 0;
+  display:flex; flex-wrap:wrap; gap:.8vmin; align-items:baseline;
+  font-size: clamp(1rem, 1.8vw, 1.6rem);
+  font-family: Georgia, "Times New Roman", serif;
+}
+.u-strong{ font-weight:800; }
+.feature-price{ margin-left:1vmin; font-size: clamp(.9rem, 1.4vw, 1.1rem); }
+.feature-price .old{ text-decoration:line-through; opacity:.8; margin:0 .5vmin; }
+.feature-price .now{ font-weight:800; }
+.feature-desc{
+  margin:.3vmin 0 0 0; font-size:clamp(.85rem, 1.1vw, 1rem); line-height:1.4; color:#eee;
+}
+
+/* Rejilla derecha: ocupa columnas 3-5 en ambas filas (3x2) */
+.mini-grid{
+  grid-column: 3 / span 3;  /* columnas 3,4,5 */
+  grid-row: 1 / span 2;     /* filas 1 y 2 */
+  display:grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columnas */
+  grid-template-rows: repeat(2, minmax(0, 1fr)); /* 2 filas */
+  gap: 1.6vmin;
+}
+
+/* Tarjeta pequeña */
+.product-card{
+  background: rgba(255,255,255,.85);
+  display:grid; grid-template-rows: 1fr max-content;
+  border-radius: .6vmin; overflow:hidden;
+}
+.product-card img{
+  width:100%; height:100%; object-fit:cover; display:block;
+}
+.product-card .caption{
+  background: rgba(0,0,0,.06);
+  text-align:center;
+  padding: .8vmin;
+  font-size: clamp(.9rem, 1.1vw, 1rem);
+  font-weight: 600;
+}
+
+/* Tile de flecha (una de las 6 celdas) */
+.arrow-tile{
+  display:grid; place-items:center;
+  background: rgba(0,0,0,.2);
+  text-decoration:none;
+  border-radius: .6vmin;
+}
+.arrow-giant{
+  font-size: clamp(2.5rem, 7vw, 7rem);
+  color: rgba(255,255,255,.85);
+  line-height: 1;
+}
+
+/* Hover sutil */
+.product-card:hover,
+.arrow-tile:hover,
+.feature-card:hover{
+  transform: translateY(-.3vmin);
+  transition: transform .15s ease;
+}
+
+/* Responsive: apilar si es necesario */
+@media (max-width: 1100px){
+  .store-grid{
+    grid-template-columns: 1fr; grid-template-rows: auto auto;
+  }
+  .feature-card{ grid-column: 1; grid-row: 1; }
+  .mini-grid{
+    grid-column: 1; grid-row: 2;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 640px){
+  .mini-grid{ grid-template-columns: 1fr; }
+}

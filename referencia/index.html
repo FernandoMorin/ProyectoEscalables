@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Novena Studio</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+
+<!-- Overlay / Panel de inicio de sesión -->
+<div class="login-overlay" aria-hidden="true">
+  <div class="login-sheet" role="dialog" aria-labelledby="login-title" aria-modal="true">
+    <button class="login-close" aria-label="Cerrar">✕</button>
+
+    <h3 id="login-title">Inicia sesión</h3>
+
+    <form class="login-form" autocomplete="on">
+      <label>
+        <span>Correo</span>
+        <input type="email" placeholder="tucorreo@dominio.com" required>
+      </label>
+      <label>
+        <span>Contraseña</span>
+        <input type="password" placeholder="••••••••" required>
+      </label>
+
+      <div class="login-actions">
+        <label class="remember"><input type="checkbox"> <span>Recordarme</span></label>
+        <button type="submit" class="btn-submit">Iniciar sesión</button>
+      </div>
+
+      <div class="login-links">
+        <a href="#">Registrarme</a>
+        <a href="#">Olvidé mi contraseña</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<body>
+
+  <!-- ================= HEADER (3 DIVS) ================= -->
+  <header class="navbar">
+    <!-- Izquierda -->
+    <div class="header-left">
+      <a href="#" class="brand" aria-label="Novena Studio">
+        <span class="brand-main">Novena</span><span class="brand-sub">Studio</span>
+      </a>
+    </div>
+
+    <!-- Centro -->
+    <div class="header-center">
+      <nav class="menu" aria-label="principal">
+        <a href="#home">HOME</a>
+        <a href="#about">ABOUT</a>
+        <a href="#servicios">SERVICIOS</a>
+        <a href="store.html">PRODUCTOS</a>
+        <a href="#">CONTACT</a>
+      </nav>
+    </div>
+
+    <!-- Derecha -->
+    <div class="header-right">
+      <a href="#" class="btn-login">INICIA SESIÓN</a>
+    </div>
+  </header>
+
+  <!-- ================= HERO (PLAN B) ================= -->
+  <section class="hero" id="home">
+    <video class="hero-video" autoplay muted playsinline>
+      <source src="Recursos/background.mp4" type="video/mp4"/>
+      Tu navegador no soporta video HTML5.
+    </video>
+    <div class="hero-overlay" aria-hidden="true"></div>
+
+    <div class="hero-layout">
+      <!-- Franja superior: título alineado a la izquierda -->
+      <div class="title-block">
+        <h1 class="hero-title">
+          <span class="line-1">Diseña</span>
+          <span class="line-2">el <em>futuro</em></span>
+        </h1>
+      </div>
+
+      <!-- Franja inferior: flecha + botón, continuos -->
+      <div class="cta-row">
+  <img src="Recursos/flecha.png" alt="Flecha decorativa" class="arrow-img">
+  <a href="#about" class="cta-outline">Conócenos</a>
+</div>
+
+  </section>
+
+  <!-- ================= ABOUT ================= -->
+<section id="about" class="about">
+  <div class="about-top">
+    <!-- Lado izquierdo: tarjeta de título con dos líneas -->
+    <div class="about-titlecard">
+      <div class="about-title">
+        <h2 class="about-line1">Acerca de</h2>
+        <hr class="about-divider">
+        <h2 class="about-line2">
+          <span class="about-novena">Novena</span>
+          <span class="about-studio">Studio</span>
+        </h2>
+      </div>
+    </div>
+
+    <!-- Lado derecho: imagen -->
+    <figure class="about-media">
+      <img src="Recursos/ref1.png" alt="Bocetos de diseño industrial en mesa" />
+    </figure>
+  </div>
+
+  <!-- Franja inferior con el texto centrado -->
+  <div class="about-bottom">
+    <p class="about-paragraph">
+      En Novena Studio unimos el diseño gráfico y el diseño industrial para transformar ideas en experiencias que inspiran.
+      Nos apasiona crear proyectos donde la estética y la funcionalidad se encuentran, dando vida a productos, marcas y
+      detalles que conectan con las personas. Cada diseño nace de la creatividad, la técnica y el deseo de innovar.
+      En Novena Studio creemos que el diseño no solo embellece, también construye posibilidades.
+    </p>
+    <p class="about-tagline"><em>Diseña el futuro con nosotros.</em></p>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+<!-- ================= SERVICIOS ================= -->
+<section id="servicios" class="services">
+  <div class="services-inner">
+    <!-- Columna izquierda (50% del ancho) -->
+    <div class="services-left">
+      <h2 class="services-heading">
+        <span>Nuestros</span>
+        <span class="light">servicios</span>
+      </h2>
+    </div>
+
+    <!-- Columna derecha: lista de 4 elementos -->
+    <div class="services-right">
+      <!-- item 1 -->
+      <article class="service-card">
+        <header class="service-head">
+          <img src="Recursos/flecha1.png" alt="" class="ico-diagonal" />
+          <h3>Diseño gráfico</h3>
+        </header>
+        <p class="service-desc">
+          Branding, identidad visual, papelería corporativa y campañas impresas que capturan la personalidad de tu marca.
+        </p>
+        <footer class="service-cta">
+          <span>Conoce más</span>
+          <img src="Recursos/flecha2.png" alt="" class="ico-straight" />
+        </footer>
+      </article>
+
+      <!-- item 2 -->
+      <article class="service-card">
+        <header class="service-head">
+          <img src="Recursos/flecha1.png" alt="" class="ico-diagonal" />
+          <h3>Diseño industrial</h3>
+        </header>
+        <p class="service-desc">
+          Creación de productos funcionales, mobiliario, prototipos y objetos con materiales seleccionados, pensando en la estética y la usabilidad.
+        </p>
+        <footer class="service-cta">
+          <span>Conoce más</span>
+          <img src="Recursos/flecha2.png" alt="" class="ico-straight" />
+        </footer>
+      </article>
+
+      <!-- item 3 -->
+      <article class="service-card">
+        <header class="service-head">
+          <img src="Recursos/flecha1.png" alt="" class="ico-diagonal" />
+          <h3>Productos personalizados</h3>
+        </header>
+        <p class="service-desc">
+          Artículos únicos hechos a medida: invitaciones, packaging, regalos corporativos y decoración que se adapte a tu estilo.
+        </p>
+        <footer class="service-cta">
+          <span>Conoce más</span>
+          <img src="Recursos/flecha2.png" alt="" class="ico-straight" />
+        </footer>
+      </article>
+
+      <!-- item 4 -->
+      <article class="service-card">
+        <header class="service-head">
+          <img src="Recursos/flecha1.png" alt="" class="ico-diagonal" />
+          <h3>Consultoría creativa</h3>
+        </header>
+        <p class="service-desc">
+          Acompañamiento desde la idea hasta la ejecución: dirección artística, materiales, acabados y conceptos que destaquen.
+        </p>
+        <footer class="service-cta">
+          <span>Conoce más</span>
+          <img src="Recursos/flecha2.png" alt="" class="ico-straight" />
+        </footer>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+  <!-- Pausar el video al finalizar -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const video = document.querySelector('.hero-video');
+      if (!video) return;
+      video.removeAttribute('loop');
+      video.addEventListener('ended', () => {
+        try { video.currentTime = Math.max(0, video.duration - 0.05); } catch(e){}
+        video.pause();
+      });
+    });
+  </script>
+
+  <script src="scripts.js"></script>
+</body>
+</html>

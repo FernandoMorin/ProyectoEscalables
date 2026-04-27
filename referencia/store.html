@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Novena Studio · Tienda</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+  <!-- ================= HEADER (idéntico al de la home) ================= -->
+  <header class="navbar">
+    <div class="header-left">
+      <a href="index.html" class="brand" aria-label="Novena Studio">
+        <span class="brand-main">Novena</span><span class="brand-sub">Studio</span>
+      </a>
+    </div>
+
+    <div class="header-center">
+      <nav class="menu" aria-label="principal">
+        <a href="index.html#home">HOME</a>
+        <a href="index.html#about">ABOUT</a>
+        <a href="index.html#servicios">SERVICIOS</a>
+        <a href="store.html" class="active">PRODUCTOS</a>
+        <a href="index.html#contact">CONTACT</a>
+      </nav>
+    </div>
+
+    <div class="header-right">
+      <a href="#" class="btn-login">INICIA SESIÓN</a>
+    </div>
+  </header>
+
+  <!-- ================= SECCIÓN: PRODUCTOS ================= -->
+  <main class="store" id="productos">
+    <div class="store-inner">
+      <!-- Cinta superior -->
+
+      <div class="store-grid">
+  <!-- === Producto destacado: 2x2 === -->
+  <article class="feature-card">
+    <!-- Cinta sobre el producto -->
+    <div class="feature-ribbon">PRODUCTO DESTACADO</div>
+
+    <img src="Recursos/producto1.png" alt="Producto destacado" />
+    <div class="feature-info">
+      <h2 class="feature-title">
+        Taza grande <span class="u-strong">15 oz</span>
+        <span class="feature-price">
+          <span class="qty">1 pz</span> ·
+          <span class="old">150$</span>
+          <span class="now">100$</span>
+        </span>
+      </h2>
+      <p class="feature-desc">
+        Nuestra taza personalizada te permite elegir el diseño que más te guste — desde tu personaje favorito,
+        una frase inspiradora, una foto especial o un arte original.
+      </p>
+    </div>
+  </article>
+
+  <!-- === Rejilla derecha: 3x2 (6 items) === -->
+  <div class="mini-grid">
+    <article class="product-card">
+      <img src="Recursos/producto1.png" alt="Pozillo de peltre 11 oz" />
+      <div class="caption">Pozillo de peltre 11 oz</div>
+    </article>
+
+    <article class="product-card">
+      <img src="Recursos/producto1.png" alt="Taza cónica xl 17 oz" />
+      <div class="caption">Taza cónica xl 17 oz</div>
+    </article>
+
+    <article class="product-card">
+      <img src="Recursos/producto1.png" alt="Taza mágica 11 oz" />
+      <div class="caption">Taza mágica 11 oz</div>
+    </article>
+
+    <article class="product-card">
+      <img src="Recursos/producto1.png" alt="Vaso cónico plástico" />
+      <div class="caption">Vaso cónico plástico</div>
+    </article>
+
+    <article class="product-card">
+      <img src="Recursos/producto1.png" alt="Mason Jar" />
+      <div class="caption">Mason Jar</div>
+    </article>
+
+    <!-- tile de navegación / siguiente -->
+    <a class="arrow-tile" href="#">
+      <span class="arrow-giant">➜</span>
+    </a>
+  </div>
+</div>
+
+    </div>
+  </main>
+
+  <!-- ========= Overlay / Panel de inicio de sesión (mismo de la home) ========= -->
+  <div class="login-overlay" aria-hidden="true">
+    <div class="login-sheet" role="dialog" aria-labelledby="login-title" aria-modal="true">
+      <button class="login-close" aria-label="Cerrar">✕</button>
+      <h3 id="login-title">Inicia sesión</h3>
+
+      <form class="login-form" autocomplete="on">
+        <label><span>Correo</span><input type="email" placeholder="tucorreo@dominio.com" required></label>
+        <label><span>Contraseña</span><input type="password" placeholder="••••••••" required></label>
+        <div class="login-actions">
+          <label class="remember"><input type="checkbox"> <span>Recordarme</span></label>
+          <button type="submit" class="btn-submit">Iniciar sesión</button>
+        </div>
+        <div class="login-links">
+          <a href="#">Registrarme</a>
+          <a href="#">Olvidé mi contraseña</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- JS con la animación del login (mismo que en index) -->
+  <script src="js/script.js"></script>
+</body>
+</html>

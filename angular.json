@@ -26,10 +26,9 @@
               },
               {
                 "glob": "**/*",
-                "input": "src/app/assets/Recursos",
+                "input": "src/assets/Recursos",
                 "output": "assets/Recursos"
               }
-              
             ],
             "styles": [
               "src/styles.css"
